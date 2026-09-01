@@ -3,53 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gastón Calzados</title>
+<title>Gastón Calzados | Sucursales</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5c400;
+    background: #f8c900;
     color: #111;
-    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .contenedor {
-    max-width: 500px;
+    width: 100%;
+    max-width: 520px;
     margin: auto;
-    padding: 35px 20px;
+    padding: 35px 18px 25px;
+    text-align: center;
 }
 
+/* LOGO */
 .logo {
-    width: 180px;
-    max-width: 70%;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+}
+
+.logo-icon {
+    font-family: Georgia, serif;
+    font-size: 72px;
+    font-weight: bold;
+    line-height: 0.8;
+    letter-spacing: -15px;
+    margin-right: 15px;
+}
+
+.logo-gaston {
+    font-family: Georgia, serif;
+    font-size: 48px;
+    letter-spacing: 7px;
+    font-weight: normal;
+    margin-top: 12px;
+}
+
+.logo-calzados {
+    font-size: 19px;
+    letter-spacing: 8px;
+    margin-top: 8px;
+}
+
+.linea {
+    width: 90px;
+    height: 2px;
+    background: #111;
+    margin: 8px auto;
+}
+
+/* TITULO */
+.pin-principal {
+    font-size: 42px;
+    margin-bottom: 8px;
 }
 
 h1 {
-    font-size: 30px;
-    margin-bottom: 10px;
+    font-size: 29px;
+    margin: 0 0 12px;
+    font-weight: 800;
 }
 
 .subtitulo {
-    font-size: 17px;
+    font-size: 18px;
     margin-bottom: 30px;
 }
 
-.boton {
-    display: block;
-    background: #111;
-    color: white;
+/* SUCURSALES */
+.sucursal {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    padding: 18px;
-    margin: 15px 0;
-    border-radius: 12px;
+    color: #111;
+    background: rgba(255,255,255,0.16);
+    border: 1.5px solid rgba(0,0,0,0.25);
+    border-radius: 18px;
+    padding: 18px 15px;
+    margin-bottom: 17px;
+    min-height: 105px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+    transition: transform 0.15s;
+}
+
+.sucursal:active {
+    transform: scale(0.98);
+}
+
+.icono {
+    width: 72px;
+    font-size: 48px;
+    flex-shrink: 0;
+}
+
+.texto {
+    flex: 1;
+    text-align: left;
+    border-left: 1px solid rgba(0,0,0,0.35);
+    padding-left: 18px;
+}
+
+.nombre {
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.direccion {
     font-size: 18px;
+}
+
+.flecha {
+    font-size: 38px;
+    margin-left: 10px;
+}
+
+/* PIE */
+.footer {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.5);
+}
+
+.footer-logo {
+    font-family: Georgia, serif;
+    font-size: 28px;
     font-weight: bold;
 }
 
-.boton:hover {
-    background: #333;
+.footer-texto {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 5px;
+    margin-top: 5px;
+}
+
+/* CELULAR */
+@media (max-width: 380px) {
+    .logo-gaston {
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .nombre {
+        font-size: 20px;
+    }
+
+    .direccion {
+        font-size: 16px;
+    }
 }
 </style>
 </head>
@@ -58,21 +170,79 @@ h1 {
 
 <div class="contenedor">
 
-<h1>Gastón Calzados</h1>
+    <div class="logo">
 
-<div class="subtitulo">Elegí tu sucursal</div>
+        <div class="logo-icon">GC</div>
 
-<a class="boton" href="https://www.google.com/maps/search/?api=1&query=Mendoza+655+Tucumán" target="_blank">
-📍 Mendoza 655
-</a>
+        <div class="logo-gaston">GASTÓN</div>
 
-<a class="boton" href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+266+Tucumán" target="_blank">
-📍 24 de Septiembre 266
-</a>
+        <div class="linea"></div>
 
-<a class="boton" href="https://www.google.com/maps/search/?api=1&query=26+de+Septiembre+282+Tucumán" target="_blank">
-📍 26 de Septiembre 282
-</a>
+        <div class="logo-calzados">CALZADOS</div>
+
+    </div>
+
+    <div class="pin-principal">📍</div>
+
+    <h1>NUESTRAS SUCURSALES</h1>
+
+    <div class="subtitulo">
+        Elegí la sucursal que querés visitar
+    </div>
+
+
+    <a class="sucursal"
+       href="https://www.google.com/maps/search/?api=1&query=Gastón+Calzados+Mendoza+665+San+Miguel+de+Tucumán"
+       target="_blank">
+
+        <div class="icono">📍</div>
+
+        <div class="texto">
+            <div class="nombre">SUCURSAL 1</div>
+            <div class="direccion">Mendoza 665</div>
+        </div>
+
+        <div class="flecha">›</div>
+
+    </a>
+
+
+    <a class="sucursal"
+       href="https://www.google.com/maps/search/?api=1&query=Gastón+Calzados+24+de+Septiembre+266+San+Miguel+de+Tucumán"
+       target="_blank">
+
+        <div class="icono">📍</div>
+
+        <div class="texto">
+            <div class="nombre">SUCURSAL 2</div>
+            <div class="direccion">24 de septiembre 266</div>
+        </div>
+
+        <div class="flecha">›</div>
+
+    </a>
+
+
+    <a class="sucursal"
+       href="https://www.google.com/maps/search/?api=1&query=Gastón+Calzados+24+de+Septiembre+282+San+Miguel+de+Tucumán"
+       target="_blank">
+
+        <div class="icono">📍</div>
+
+        <div class="texto">
+            <div class="nombre">SUCURSAL 3</div>
+            <div class="direccion">24 de septiembre 282</div>
+        </div>
+
+        <div class="flecha">›</div>
+
+    </a>
+
+
+    <div class="footer">
+        <div class="footer-logo">GC</div>
+        <div class="footer-texto">GASTÓN CALZADOS</div>
+    </div>
 
 </div>
 
