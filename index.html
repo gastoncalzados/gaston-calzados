@@ -1,216 +1,682 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Gastón Calzados - WhatsApp</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gastón Calzados</title>
+
 <style>
-  /* Estilos para replicar la tarjeta física */
-  body, html {
+
+/* ================================
+   CONFIGURACIÓN GENERAL
+================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
     margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f0f0f0; /* Fondo grisáceo para que resalte la "tarjeta" */
-    display: flex;
-    justify-content: center;
-  }
+    min-height: 100vh;
 
-  .tarjeta-contenedor {
-    width: 100%;
-    max-width: 480px; /* Ancho máximo para que se vea bien en celular */
-    height: 100%;
-    background-color: #ffc107; /* Color de fondo amarillo de la tarjeta */
-    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 10%, transparent 11%);
-    background-size: 30px 30px; /* Patrón de burbujas */
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  }
+    font-family: Arial, Helvetica, sans-serif;
 
-  /* Sección superior (NFC y texto) */
-  .top-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 40px;
-    text-align: center;
-    color: #0d3f7a; /* Azul oscuro */
-  }
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255,255,255,0.55),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #fff8c9,
+            #ffe36b
+        );
 
-  .nfc-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
-  }
-
-  .main-title {
-    font-size: 28px;
-    font-weight: 900;
-    margin: 0 20px 10px 20px;
-    text-transform: uppercase;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 16px;
-    margin: 0 20px;
-    font-weight: 600;
-  }
-
-  /* Área central (Logo grande) */
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    height: 180px; /* Espacio que ocupa el logo */
-    margin-bottom: -90px; /* Para que el logo baje y se superponga */
-    z-index: 10;
-  }
-
-  .logo-circle {
-    width: 180px;
-    height: 180px;
-    background-color: #0d3f7a; /* Azul oscuro */
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    border: 4px solid white;
-  }
-
-  .logo-text-gaston {
-    font-family: 'Brush Script MT', cursive; /* Símil manuscrita */
-    font-size: 55px;
-    color: white;
-    margin-top: -10px;
-    line-height: 1;
-  }
-  
-  /* Intentando replicar la tipografía exacta de la foto */
-  .logo-text-gaston {
-    font-family: "Times New Roman", Times, serif; /* Es unaserifa muy específica en el logo, usaremos esto como base */
-    font-weight: bold;
-    font-size: 60px;
-    letter-spacing: -2px;
-  }
-
-  .logo-text-calzados {
-    font-size: 14px;
-    color: white;
-    letter-spacing: 3px;
-    font-weight: bold;
-    margin-top: -5px;
-  }
-
-  /* Sección inferior (Instrucciones, QR y Gracias) */
-  .bottom-section {
-    background-color: white;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    padding: 110px 20px 20px 20px; /* Mucho padding arriba para el logo */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    color: #333;
-  }
-
-  .instructions-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .phone-icon {
-    width: 60px;
-    height: auto;
-  }
-
-  .instruction-text {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
-    flex: 1;
-    text-align: left;
-  }
-
-  /* Estilo de las sucursales (añadida la 3) */
-  .sucursales-list {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 14px;
     color: #555;
-    line-height: 1.6;
-    border-top: 1px solid #eee;
-    padding-top: 15px;
-  }
-  
-  .sucursales-list strong {
-    color: #0d3f7a;
-    font-size: 15px;
-  }
+}
 
-  /* Estilo del QR (usando el mismo QR de la imagen de ejemplo) */
-  .qr-code {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 20px;
-  }
 
-  /* Franja azul final */
-  .footer-bar {
-    background-color: #0d3f7a;
-    color: white;
-    padding: 15px;
+/* ================================
+   PÁGINA
+================================ */
+
+.pagina {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px 12px;
+}
+
+
+/* ================================
+   TARJETA BLANCA
+================================ */
+
+.tarjeta {
+
+    width: 100%;
+
+    max-width: 790px;
+
+    background: white;
+
+    border-radius: 55px;
+
+    padding: 55px 45px 45px;
+
     text-align: center;
-    font-weight: bold;
-    margin-top: auto; /* Se asegura de ir al fondo */
-  }
 
-  .thanks-text {
-    font-size: 20px;
-    font-style: italic; /* Símil manuscrita */
-    font-family: Georgia, serif;
-  }
-  
-  .small-thanks {
-    font-size: 10px;
-    letter-spacing: 1px;
-    margin-top: 2px;
-    opacity: 0.8;
-  }
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.12);
+}
+
+
+/* ================================
+   LOGO
+   TODO ESTÁ DENTRO DEL HTML
+================================ */
+
+.logo {
+
+    width: 300px;
+
+    height: 300px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f7d900,
+            #ffed24
+        );
+
+    box-shadow:
+        inset 0 0 0 8px #e9bd00;
+}
+
+
+/* CÍRCULO AZUL DEL LOGO */
+
+.logo::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 225px;
+
+    height: 225px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #25a9ec,
+            #087ac1 70%
+        );
+
+    box-shadow:
+        inset 0 0 0 7px #0877b8;
+
+}
+
+
+/* TEXTO DEL LOGO */
+
+.logo-texto {
+
+    position: relative;
+
+    z-index: 2;
+
+    color: white;
+
+    font-size: 52px;
+
+    font-weight: 300;
+
+    letter-spacing: -3px;
+
+    margin-top: -10px;
+}
+
+
+/* CALZADOS */
+
+.logo-calzados {
+
+    position: absolute;
+
+    z-index: 3;
+
+    top: 158px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: white;
+
+    color: #1688c7;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    padding: 4px 9px;
+
+    white-space: nowrap;
+}
+
+
+/* ================================
+   TÍTULO
+================================ */
+
+h1 {
+
+    margin: 0 0 15px;
+
+    color: #1688c7;
+
+    font-size: 55px;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   SUBTÍTULO
+================================ */
+
+.subtitulo {
+
+    margin: 0 0 55px;
+
+    color: #5f5f5f;
+
+    font-size: 29px;
+
+    line-height: 1.4;
+}
+
+
+/* ================================
+   BOTONES
+================================ */
+
+.sucursales {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+.boton {
+
+    width: 100%;
+
+    min-height: 175px;
+
+    padding: 25px 30px;
+
+    border-radius: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    text-decoration: none;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #218fca,
+            #1582bd
+        );
+
+    box-shadow:
+        0 12px 25px rgba(20,130,190,0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* EFECTO AL PASAR EL MOUSE */
+
+.boton:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 18px 30px rgba(20,130,190,0.28);
+}
+
+
+/* EFECTO AL HACER CLICK */
+
+.boton:active {
+
+    transform: scale(0.98);
+}
+
+
+/* ================================
+   PIN
+================================ */
+
+.pin {
+
+    font-size: 38px;
+
+    line-height: 1;
+}
+
+
+/* ================================
+   INFORMACIÓN
+================================ */
+
+.info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.info strong {
+
+    font-size: 39px;
+
+    line-height: 1;
+}
+
+
+.info span {
+
+    font-size: 30px;
+
+    line-height: 1.2;
+}
+
+
+/* ================================
+   TEXTO INFERIOR
+================================ */
+
+.ubicacion {
+
+    margin-top: 42px;
+
+    margin-bottom: 0;
+
+    color: #888;
+
+    font-size: 24px;
+}
+
+
+.gracias {
+
+    margin-top: 18px;
+
+    color: #1688c7;
+
+    font-size: 27px;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   CELULARES
+================================ */
+
+@media (max-width: 600px) {
+
+    .pagina {
+
+        padding: 15px 8px;
+
+        align-items: flex-start;
+    }
+
+
+    .tarjeta {
+
+        border-radius: 38px;
+
+        padding: 30px 17px 30px;
+    }
+
+
+    .logo {
+
+        width: 220px;
+
+        height: 220px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .logo::before {
+
+        width: 165px;
+
+        height: 165px;
+    }
+
+
+    .logo-texto {
+
+        font-size: 39px;
+    }
+
+
+    .logo-calzados {
+
+        top: 115px;
+
+        font-size: 15px;
+
+        letter-spacing: 3px;
+    }
+
+
+    h1 {
+
+        font-size: 39px;
+
+        margin-bottom: 12px;
+    }
+
+
+    .subtitulo {
+
+        font-size: 21px;
+
+        margin-bottom: 35px;
+
+        line-height: 1.4;
+    }
+
+
+    .sucursales {
+
+        gap: 18px;
+    }
+
+
+    .boton {
+
+        min-height: 135px;
+
+        padding: 18px 12px;
+
+        border-radius: 27px;
+
+        gap: 12px;
+    }
+
+
+    .pin {
+
+        font-size: 28px;
+    }
+
+
+    .info {
+
+        gap: 8px;
+    }
+
+
+    .info strong {
+
+        font-size: 28px;
+    }
+
+
+    .info span {
+
+        font-size: 21px;
+    }
+
+
+    .ubicacion {
+
+        margin-top: 30px;
+
+        font-size: 17px;
+    }
+
+
+    .gracias {
+
+        font-size: 21px;
+
+        margin-top: 16px;
+    }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
 
-  <div class="tarjeta-contenedor">
-    
-    <div class="top-section">
-      <svg class="nfc-icon" viewBox="0 0 24 24" fill="none" stroke="#0d3f7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 6.41a8.7 8.7 0 0 0-14 0M16.91 8.5a5.8 5.8 0 0 0-9.8 0M14.82 10.59a2.9 2.9 0 0 0-5.6 0"></path>
-        <circle cx="12" cy="16.91" r=".9"></circle>
-      </svg>
-      
-      <div class="main-title">¡AGENDANOS <br>EN WHATSAPP!</div>
-      <div class="subtitle">Y ENTERATE DE TODAS <br>NUESTRAS NOVEDADES</div>
+
+<div class="pagina">
+
+
+    <div class="tarjeta">
+
+
+        <!-- =================================
+             LOGO
+        ================================== -->
+
+        <div class="logo">
+
+            <div class="logo-texto">
+                gaston
+            </div>
+
+            <div class="logo-calzados">
+                CALZADOS
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             TÍTULO
+        ================================== -->
+
+        <h1>
+            Gastón Calzados
+        </h1>
+
+
+        <p class="subtitulo">
+
+            Elegí tu sucursal y abrí la ubicación en
+            <br>
+
+            Google Maps
+
+        </p>
+
+
+        <!-- =================================
+             SUCURSALES
+        ================================== -->
+
+        <div class="sucursales">
+
+
+            <!-- SUCURSAL 1 -->
+
+            <a
+                class="boton"
+                href="https://www.google.com/maps/search/?api=1&query=Mendoza+655%2C+San+Miguel+de+Tucum%C3%A1n%2C+Tucum%C3%A1n%2C+Argentina"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="pin">
+                    📍
+                </span>
+
+                <div class="info">
+
+                    <strong>
+                        Sucursal 1
+                    </strong>
+
+                    <span>
+                        Mendoza 655
+                    </span>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- SUCURSAL 2 -->
+
+            <a
+                class="boton"
+                href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+266%2C+San+Miguel+de+Tucum%C3%A1n%2C+Tucum%C3%A1n%2C+Argentina"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="pin">
+                    📍
+                </span>
+
+                <div class="info">
+
+                    <strong>
+                        Sucursal 2
+                    </strong>
+
+                    <span>
+                        24 de Septiembre 266
+                    </span>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- SUCURSAL 3 -->
+
+            <a
+                class="boton"
+                href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+282%2C+San+Miguel+de+Tucum%C3%A1n%2C+Tucum%C3%A1n%2C+Argentina"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="pin">
+                    📍
+                </span>
+
+                <div class="info">
+
+                    <strong>
+                        Sucursal 3
+                    </strong>
+
+                    <span>
+                        24 de Septiembre 282
+                    </span>
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- =================================
+             PARTE INFERIOR
+        ================================== -->
+
+        <p class="ubicacion">
+
+            Gastón Calzados · San Miguel de Tucumán
+
+        </p>
+
+
+        <p class="gracias">
+
+            ¡Gracias por confiar en nosotros! 💙
+
+        </p>
+
+
     </div>
 
-    <div class="logo-container">
-      <div class="logo-circle">
-        <div class="logo-text-gaston">gaston</div>
-        <div class="logo-text-calzados">CALZADOS</div>
-      </div>
-    </div>
+</div>
 
-    <div class="bottom-section">
-      <div class="instructions-container">
-        <img src="https://i.ibb
+
+</body>
+
+</html>
