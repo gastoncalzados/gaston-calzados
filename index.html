@@ -3,376 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Gastón Calzados | Sucursales</title>
-
+  <title>Gastón Calzados - Sucursales</title>
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #FFD600;
-      color: #009FE3;
+      background: linear-gradient(180deg, #fff9d6 0%, #ffe97d 100%);
       min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
     }
 
-    .contenedor {
+    .container {
+      background-color: #ffffff;
       width: 100%;
-      max-width: 480px;
-      margin: auto;
-      padding: 25px 15px 35px;
+      max-width: 380px;
+      border-radius: 32px;
+      padding: 40px 24px 30px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
       text-align: center;
-    }
-
-    /* =========================
-       LOGO
-       ========================= */
-
-    .logo {
-      width: 190px;
-      height: 190px;
-      border: 3px solid #009FE3;
-      border-radius: 50%;
-      margin: 0 auto 25px;
-
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-
-      padding: 15px;
     }
 
-    .logo-g {
-      font-family: Georgia, serif;
-      font-size: 72px;
-      font-weight: bold;
-      line-height: 0.8;
-      margin-bottom: 10px;
-    }
-
-    .logo-gaston {
-      font-family: Georgia, serif;
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
-
-    .logo-linea {
-      width: 100px;
-      height: 2px;
-      background: #009FE3;
-      margin: 6px 0;
-    }
-
-    .logo-calzados {
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 4px;
-    }
-
-    /* =========================
-       TITULO
-       ========================= */
-
-    .pin {
-      font-size: 35px;
-      margin-bottom: 5px;
-    }
-
-    h1 {
-      font-size: 27px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .subtitulo {
-      font-size: 16px;
-      font-weight: 500;
-      margin-bottom: 28px;
-    }
-
-    /* =========================
-       SUCURSALES
-       ========================= */
-
-    .sucursal {
+    /* Contenedor del Logo */
+    .logo-container {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffee55 0%, #e6b800 100%);
       display: flex;
+      justify-content: center;
       align-items: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 15px rgba(230, 184, 0, 0.4);
+      padding: 8px;
+    }
 
+    .logo-inner {
       width: 100%;
-      min-height: 100px;
-
-      margin-bottom: 16px;
-      padding: 15px;
-
-      border: 2px solid #009FE3;
-      border-radius: 16px;
-
-      background: rgba(255, 255, 255, 0.10);
-
-      color: #009FE3;
-      text-decoration: none;
-
-      transition: 0.2s;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #1d9bf0 0%, #0066cc 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
 
-    .sucursal:hover {
-      background: #009FE3;
-      color: #FFD600;
-      transform: translateY(-2px);
-    }
-
-    .icono {
-      width: 65px;
-      flex-shrink: 0;
-      font-size: 42px;
-    }
-
-    .informacion {
-      flex: 1;
-      text-align: left;
-
-      border-left: 1px solid #009FE3;
-      padding-left: 15px;
-    }
-
-    .nombre {
-      font-size: 21px;
+    .logo-brand {
+      font-size: 26px;
       font-weight: 800;
-      margin-bottom: 6px;
+      line-height: 1;
+      letter-spacing: -0.5px;
     }
 
-    .direccion {
-      font-size: 17px;
-      font-weight: 500;
-    }
-
-    .flecha {
-      font-size: 38px;
-      font-weight: 300;
-      margin-left: 8px;
-    }
-
-    /* =========================
-       PIE
-       ========================= */
-
-    .footer {
-      margin-top: 30px;
-      padding-top: 20px;
-
-      border-top: 1px solid #009FE3;
-    }
-
-    .footer-g {
-      font-family: Georgia, serif;
-      font-size: 35px;
-      font-weight: bold;
-    }
-
-    .footer-texto {
-      font-family: Georgia, serif;
-      font-size: 13px;
-      letter-spacing: 4px;
-      margin-top: 5px;
-    }
-
-    /* =========================
-       CELULARES PEQUEÑOS
-       ========================= */
-
-    @media (max-width: 380px) {
-
-      .logo {
-        width: 165px;
-        height: 165px;
-      }
-
-      .logo-g {
-        font-size: 60px;
-      }
-
-      .logo-gaston {
-        font-size: 21px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .nombre {
-        font-size: 19px;
-      }
-
-      .direccion {
-        font-size: 15px;
-      }
-
-    }
-
-  </style>
-</head>
-
-
-<body>
-
-  <div class="contenedor">
-
-
-    <!-- LOGO -->
-
-    <div class="logo">
-
-      <div class="logo-g">
-        g
-      </div>
-
-      <div class="logo-gaston">
-        GASTÓN
-      </div>
-
-      <div class="logo-linea"></div>
-
-      <div class="logo-calzados">
-        CALZADOS
-      </div>
-
-    </div>
-
-
-    <!-- TITULO -->
-
-    <div class="pin">
-      📍
-    </div>
-
-    <h1>
-      NUESTRAS SUCURSALES
-    </h1>
-
-    <div class="subtitulo">
-      Elegí la sucursal que querés visitar
-    </div>
-
-
-    <!-- SUCURSAL 1 -->
-
-    <a
-      class="sucursal"
-      href="https://www.google.com/maps/search/?api=1&query=Gastón+Calzados+Mendoza+665+San+Miguel+de+Tucumán"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-
-      <div class="icono">
-        📍
-      </div>
-
-      <div class="informacion">
-
-        <div class="nombre">
-          SUCURSAL 1
-        </div>
-
-        <div class="direccion">
-          Mendoza 665
-        </div>
-
-      </div>
-
-      <div class="flecha">
-        ›
-      </div>
-
-    </a>
-
-
-    <!-- SUCURSAL 2 -->
-
-    <a
-      class="sucursal"
-      href="https://www.google.com/maps/search/?api=1&query=Gastón+Calzados+24+de+Septiembre+266+San+Miguel+de+Tucumán"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-
-      <div class="icono">
-        📍
-      </div>
-
-      <div class="informacion">
-
-        <div class="nombre">
-          SUCURSAL 2
-        </div>
-
-        <div class="direccion">
-          24 de septiembre 266
-        </div>
-
-      </div>
-
-      <div class="flecha">
-        ›
-      </div>
-
-    </a>
-
-
-    <!-- SUCURSAL 3 -->
-
-    <a
-      class="sucursal"
-      href="https://www.google.com/maps/search/?api=1&query=Gastón+Calzados+24+de+Septiembre+282+San+Miguel+de+Tucumán"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-
-      <div class="icono">
-        📍
-      </div>
-
-      <div class="informacion">
-
-        <div class="nombre">
-          SUCURSAL 3
-        </div>
-
-        <div class="direccion">
-          24 de septiembre 282
-        </div>
-
-      </div>
-
-      <div class="flecha">
-        ›
-      </div>
-
-    </a>
-
-
-    <!-- PIE -->
-
-    <div class="footer">
-
-      <div class="footer-g">
-        g
-      </div>
-
-      <div class="footer-texto">
-        GASTÓN CALZADOS
-      </div>
-
-    </div>
-
-
-  </div>
-
-</body>
-</html>
+    .logo-sub {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      border-top: 1px solid rgba(255,
