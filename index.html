@@ -1,557 +1,216 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Gastón Calzados - WhatsApp</title>
+<style>
+  /* Estilos para replicar la tarjeta física */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f0f0; /* Fondo grisáceo para que resalte la "tarjeta" */
+    display: flex;
+    justify-content: center;
+  }
 
-    <title>Gaston Calzados - Sucursales</title>
+  .tarjeta-contenedor {
+    width: 100%;
+    max-width: 480px; /* Ancho máximo para que se vea bien en celular */
+    height: 100%;
+    background-color: #ffc107; /* Color de fondo amarillo de la tarjeta */
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 10%, transparent 11%);
+    background-size: 30px 30px; /* Patrón de burbujas */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  /* Sección superior (NFC y texto) */
+  .top-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    text-align: center;
+    color: #0d3f7a; /* Azul oscuro */
+  }
 
-        body {
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #eeeeee;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  .nfc-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
 
-        /* CONTENEDOR PRINCIPAL */
-        .phone-page {
-            width: 100%;
-            max-width: 520px;
-            min-height: 100vh;
-            background: white;
-            position: relative;
-            overflow: hidden;
-            padding-bottom: 145px;
-        }
+  .main-title {
+    font-size: 28px;
+    font-weight: 900;
+    margin: 0 20px 10px 20px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
 
-        /* CABECERA */
-        .header {
-            position: relative;
-            height: 360px;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 7% 12%, rgba(255,255,255,.45) 0 42px, transparent 43px),
-                radial-gradient(circle at 29% 17%, rgba(255,255,255,.25) 0 55px, transparent 56px),
-                radial-gradient(circle at 68% 4%, rgba(255,255,255,.22) 0 65px, transparent 66px),
-                radial-gradient(circle at 91% 31%, rgba(255,255,255,.25) 0 70px, transparent 71px),
-                radial-gradient(circle at 15% 65%, rgba(255,255,255,.35) 0 45px, transparent 46px),
-                radial-gradient(circle at 78% 69%, rgba(255,255,255,.22) 0 65px, transparent 66px),
-                linear-gradient(135deg, #f8d95b, #f4c94b 55%, #f2c43c);
-        }
+  .subtitle {
+    font-size: 16px;
+    margin: 0 20px;
+    font-weight: 600;
+  }
 
-        /* Círculos decorativos */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,.20);
-            filter: blur(1px);
-        }
+  /* Área central (Logo grande) */
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 180px; /* Espacio que ocupa el logo */
+    margin-bottom: -90px; /* Para que el logo baje y se superponga */
+    z-index: 10;
+  }
 
-        .bubble.b1 {
-            width: 100px;
-            height: 100px;
-            left: -35px;
-            top: 15px;
-        }
+  .logo-circle {
+    width: 180px;
+    height: 180px;
+    background-color: #0d3f7a; /* Azul oscuro */
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border: 4px solid white;
+  }
 
-        .bubble.b2 {
-            width: 150px;
-            height: 150px;
-            right: -50px;
-            top: 45px;
-        }
+  .logo-text-gaston {
+    font-family: 'Brush Script MT', cursive; /* Símil manuscrita */
+    font-size: 55px;
+    color: white;
+    margin-top: -10px;
+    line-height: 1;
+  }
+  
+  /* Intentando replicar la tipografía exacta de la foto */
+  .logo-text-gaston {
+    font-family: "Times New Roman", Times, serif; /* Es unaserifa muy específica en el logo, usaremos esto como base */
+    font-weight: bold;
+    font-size: 60px;
+    letter-spacing: -2px;
+  }
 
-        .bubble.b3 {
-            width: 85px;
-            height: 85px;
-            left: 35px;
-            bottom: 25px;
-        }
+  .logo-text-calzados {
+    font-size: 14px;
+    color: white;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-top: -5px;
+  }
 
-        .bubble.b4 {
-            width: 120px;
-            height: 120px;
-            right: 80px;
-            bottom: -50px;
-        }
+  /* Sección inferior (Instrucciones, QR y Gracias) */
+  .bottom-section {
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 110px 20px 20px 20px; /* Mucho padding arriba para el logo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #333;
+  }
 
-        /* NFC */
-        .nfc {
-            position: relative;
-            z-index: 5;
-            text-align: center;
-            padding-top: 18px;
-            color: #111111;
-        }
+  .instructions-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
 
-        .nfc-icon {
-            font-size: 45px;
-            line-height: 42px;
-            font-weight: bold;
-            transform: rotate(90deg);
-            display: inline-block;
-        }
+  .phone-icon {
+    width: 60px;
+    height: auto;
+  }
 
-        .nfc-text {
-            font-size: 21px;
-            margin-top: 2px;
-            font-weight: 500;
-        }
+  .instruction-text {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    flex: 1;
+    text-align: left;
+  }
 
-        /* TÍTULO */
-        .title {
-            position: relative;
-            z-index: 5;
-            text-align: center;
-            margin-top: 6px;
-        }
+  /* Estilo de las sucursales (añadida la 3) */
+  .sucursales-list {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+  }
+  
+  .sucursales-list strong {
+    color: #0d3f7a;
+    font-size: 15px;
+  }
 
-        .title h1 {
-            color: #003f83;
-            font-size: 42px;
-            line-height: 44px;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
+  /* Estilo del QR (usando el mismo QR de la imagen de ejemplo) */
+  .qr-code {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+  }
 
-        .title p {
-            color: #003f83;
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 30px;
-        }
+  /* Franja azul final */
+  .footer-bar {
+    background-color: #0d3f7a;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: auto; /* Se asegura de ir al fondo */
+  }
 
-        .city {
-            font-size: 23px;
-            color: #333333;
-            margin-top: 4px;
-            font-weight: 400;
-        }
-
-        /* LOGO */
-        .logo-container {
-            position: absolute;
-            z-index: 10;
-            left: 50%;
-            bottom: -63px;
-            transform: translateX(-50%);
-            width: 190px;
-            height: 190px;
-            border-radius: 50%;
-            background: #0b66c3;
-            border: 7px solid rgba(255,255,255,.3);
-            box-shadow: 0 5px 14px rgba(0,0,0,.20);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo {
-            color: white;
-            text-align: center;
-            font-family: Georgia, "Times New Roman", serif;
-        }
-
-        .logo .gaston {
-            font-size: 48px;
-            letter-spacing: 1px;
-            line-height: 45px;
-        }
-
-        .logo .calzados {
-            display: inline-block;
-            margin-top: 2px;
-            background: white;
-            color: #164b81;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            padding: 2px 9px;
-            border-radius: 2px;
-        }
-
-        /* CONTENIDO */
-        .content {
-            position: relative;
-            z-index: 20;
-            padding: 90px 28px 30px;
-            background: white;
-        }
-
-        .instruction {
-            text-align: center;
-            color: #222;
-            font-size: 20px;
-            line-height: 25px;
-            margin-bottom: 25px;
-        }
-
-        /* TARJETAS */
-        .branch {
-            width: 100%;
-            min-height: 118px;
-            margin-bottom: 16px;
-            padding: 17px 18px;
-            border-radius: 22px;
-            background: #ffffff;
-            border: 2px solid #d9e6ef;
-            box-shadow:
-                0 3px 0 #f0d44f,
-                0 4px 10px rgba(0,0,0,.12);
-
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-
-            transition: transform .15s ease, box-shadow .15s ease;
-        }
-
-        .branch:active {
-            transform: scale(.98);
-            box-shadow:
-                0 2px 0 #f0d44f,
-                0 3px 7px rgba(0,0,0,.12);
-        }
-
-        /* ÍCONO UBICACIÓN */
-        .location-icon {
-            flex: 0 0 58px;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: #0b4f8e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 17px;
-        }
-
-        .pin {
-            position: relative;
-            width: 23px;
-            height: 30px;
-            background: white;
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-        }
-
-        .pin::after {
-            content: "";
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #0b4f8e;
-            border-radius: 50%;
-            top: 7px;
-            left: 7px;
-        }
-
-        /* TEXTO DE SUCURSAL */
-        .branch-info {
-            flex: 1;
-        }
-
-        .branch-name {
-            color: #163b5c;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .branch-address {
-            color: #253b4c;
-            font-size: 18px;
-            line-height: 23px;
-        }
-
-        .arrow {
-            font-size: 38px;
-            color: #124b72;
-            font-weight: 300;
-            margin-left: 8px;
-        }
-
-        /* PARTE INFERIOR */
-        .bottom {
-            position: absolute;
-            z-index: 30;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 145px;
-            background: #064c88;
-            overflow: hidden;
-        }
-
-        /* ONDA SUPERIOR */
-        .wave {
-            position: absolute;
-            top: -43px;
-            left: -5%;
-            width: 110%;
-            height: 85px;
-            background: white;
-            border-radius: 50%;
-        }
-
-        .wave2 {
-            position: absolute;
-            top: -22px;
-            left: -10%;
-            width: 120%;
-            height: 55px;
-            background: #064c88;
-            border-radius: 50%;
-        }
-
-        .thanks {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 19px;
-            text-align: center;
-            color: white;
-        }
-
-        .thanks-main {
-            font-family: "Brush Script MT", "Segoe Script", cursive;
-            font-size: 34px;
-            font-style: italic;
-            line-height: 35px;
-        }
-
-        .thanks-sub {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 430px) {
-
-            .header {
-                height: 340px;
-            }
-
-            .title h1 {
-                font-size: 36px;
-                line-height: 39px;
-            }
-
-            .title p {
-                font-size: 23px;
-            }
-
-            .city {
-                font-size: 20px;
-            }
-
-            .logo-container {
-                width: 170px;
-                height: 170px;
-                bottom: -58px;
-            }
-
-            .logo .gaston {
-                font-size: 43px;
-            }
-
-            .content {
-                padding-left: 20px;
-                padding-right: 20px;
-                padding-top: 82px;
-            }
-
-            .instruction {
-                font-size: 18px;
-                line-height: 23px;
-            }
-
-            .branch {
-                min-height: 112px;
-                padding: 14px;
-            }
-
-            .location-icon {
-                width: 52px;
-                height: 52px;
-                flex-basis: 52px;
-                margin-right: 13px;
-            }
-
-            .branch-name {
-                font-size: 18px;
-            }
-
-            .branch-address {
-                font-size: 16px;
-                line-height: 21px;
-            }
-
-            .arrow {
-                font-size: 32px;
-            }
-        }
-    </style>
+  .thanks-text {
+    font-size: 20px;
+    font-style: italic; /* Símil manuscrita */
+    font-family: Georgia, serif;
+  }
+  
+  .small-thanks {
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    opacity: 0.8;
+  }
+</style>
 </head>
-
 <body>
 
-    <main class="phone-page">
+  <div class="tarjeta-contenedor">
+    
+    <div class="top-section">
+      <svg class="nfc-icon" viewBox="0 0 24 24" fill="none" stroke="#0d3f7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 6.41a8.7 8.7 0 0 0-14 0M16.91 8.5a5.8 5.8 0 0 0-9.8 0M14.82 10.59a2.9 2.9 0 0 0-5.6 0"></path>
+        <circle cx="12" cy="16.91" r=".9"></circle>
+      </svg>
+      
+      <div class="main-title">¡AGENDANOS <br>EN WHATSAPP!</div>
+      <div class="subtitle">Y ENTERATE DE TODAS <br>NUESTRAS NOVEDADES</div>
+    </div>
 
-        <!-- CABECERA -->
-        <section class="header">
+    <div class="logo-container">
+      <div class="logo-circle">
+        <div class="logo-text-gaston">gaston</div>
+        <div class="logo-text-calzados">CALZADOS</div>
+      </div>
+    </div>
 
-            <div class="bubble b1"></div>
-            <div class="bubble b2"></div>
-            <div class="bubble b3"></div>
-            <div class="bubble b4"></div>
-
-            <div class="nfc">
-                <div class="nfc-icon">)))</div>
-                <div class="nfc-text">NFC</div>
-            </div>
-
-            <div class="title">
-                <h1>¡Visítanos!</h1>
-                <p>Nuestras sucursales</p>
-                <div class="city">San Miguel de Tucumán</div>
-            </div>
-
-            <!-- LOGO -->
-            <div class="logo-container">
-                <div class="logo">
-                    <div class="gaston">gaston</div>
-                    <div class="calzados">CALZADOS</div>
-                </div>
-            </div>
-
-        </section>
-
-
-        <!-- CONTENIDO -->
-        <section class="content">
-
-            <div class="instruction">
-                Tocá una sucursal para abrir la ubicación en<br>
-                Google Maps
-            </div>
-
-
-            <!-- SUCURSAL 1 -->
-            <a
-                class="branch"
-                href="https://www.google.com/maps/search/?api=1&query=Mendoza+655,+San+Miguel+de+Tucumán"
-                target="_blank"
-            >
-
-                <div class="location-icon">
-                    <div class="pin"></div>
-                </div>
-
-                <div class="branch-info">
-                    <div class="branch-name">
-                        Sucursal 1
-                    </div>
-
-                    <div class="branch-address">
-                        Mendoza 655<br>
-                        San Miguel de Tucumán
-                    </div>
-                </div>
-
-                <div class="arrow">›</div>
-
-            </a>
-
-
-            <!-- SUCURSAL 2 -->
-            <a
-                class="branch"
-                href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+266,+San+Miguel+de+Tucumán"
-                target="_blank"
-            >
-
-                <div class="location-icon">
-                    <div class="pin"></div>
-                </div>
-
-                <div class="branch-info">
-                    <div class="branch-name">
-                        Sucursal 2
-                    </div>
-
-                    <div class="branch-address">
-                        24 de Septiembre 266<br>
-                        San Miguel de Tucumán
-                    </div>
-                </div>
-
-                <div class="arrow">›</div>
-
-            </a>
-
-
-            <!-- SUCURSAL 3 -->
-            <a
-                class="branch"
-                href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+282,+San+Miguel+de+Tucumán"
-                target="_blank"
-            >
-
-                <div class="location-icon">
-                    <div class="pin"></div>
-                </div>
-
-                <div class="branch-info">
-                    <div class="branch-name">
-                        Sucursal 3
-                    </div>
-
-                    <div class="branch-address">
-                        24 de Septiembre 282<br>
-                        San Miguel de Tucumán
-                    </div>
-                </div>
-
-                <div class="arrow">›</div>
-
-            </a>
-
-        </section>
-
-
-        <!-- PIE AZUL -->
-        <footer class="bottom">
-
-            <div class="wave"></div>
-            <div class="wave2"></div>
-
-            <div class="thanks">
-                <div class="thanks-main">
-                    ¡Gracias!♡
-                </div>
-
-                <div class="thanks-sub">
-                    POR ELEGIRNOS
-                </div>
-            </div>
-
-        </footer>
-
-    </main>
-
-</body>
-</html>
+    <div class="bottom-section">
+      <div class="instructions-container">
+        <img src="https://i.ibb
