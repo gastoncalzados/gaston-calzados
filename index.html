@@ -1,76 +1,557 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gastón Calzados - Sucursales</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      background: linear-gradient(180deg, #fff9d6 0%, #ffe97d 100%);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px 15px;
-    }
+    <title>Gaston Calzados - Sucursales</title>
 
-    .container {
-      background-color: #ffffff;
-      width: 100%;
-      max-width: 380px;
-      border-radius: 32px;
-      padding: 40px 24px 30px 24px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Contenedor del Logo */
-    .logo-container {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ffee55 0%, #e6b800 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 15px rgba(230, 184, 0, 0.4);
-      padding: 8px;
-    }
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eeeeee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #1d9bf0 0%, #0066cc 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
+        /* CONTENEDOR PRINCIPAL */
+        .phone-page {
+            width: 100%;
+            max-width: 520px;
+            min-height: 100vh;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 145px;
+        }
 
-    .logo-brand {
-      font-size: 26px;
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.5px;
-    }
+        /* CABECERA */
+        .header {
+            position: relative;
+            height: 360px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 7% 12%, rgba(255,255,255,.45) 0 42px, transparent 43px),
+                radial-gradient(circle at 29% 17%, rgba(255,255,255,.25) 0 55px, transparent 56px),
+                radial-gradient(circle at 68% 4%, rgba(255,255,255,.22) 0 65px, transparent 66px),
+                radial-gradient(circle at 91% 31%, rgba(255,255,255,.25) 0 70px, transparent 71px),
+                radial-gradient(circle at 15% 65%, rgba(255,255,255,.35) 0 45px, transparent 46px),
+                radial-gradient(circle at 78% 69%, rgba(255,255,255,.22) 0 65px, transparent 66px),
+                linear-gradient(135deg, #f8d95b, #f4c94b 55%, #f2c43c);
+        }
 
-    .logo-sub {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      border-top: 1px solid rgba(255,
+        /* Círculos decorativos */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.20);
+            filter: blur(1px);
+        }
+
+        .bubble.b1 {
+            width: 100px;
+            height: 100px;
+            left: -35px;
+            top: 15px;
+        }
+
+        .bubble.b2 {
+            width: 150px;
+            height: 150px;
+            right: -50px;
+            top: 45px;
+        }
+
+        .bubble.b3 {
+            width: 85px;
+            height: 85px;
+            left: 35px;
+            bottom: 25px;
+        }
+
+        .bubble.b4 {
+            width: 120px;
+            height: 120px;
+            right: 80px;
+            bottom: -50px;
+        }
+
+        /* NFC */
+        .nfc {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding-top: 18px;
+            color: #111111;
+        }
+
+        .nfc-icon {
+            font-size: 45px;
+            line-height: 42px;
+            font-weight: bold;
+            transform: rotate(90deg);
+            display: inline-block;
+        }
+
+        .nfc-text {
+            font-size: 21px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        /* TÍTULO */
+        .title {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .title h1 {
+            color: #003f83;
+            font-size: 42px;
+            line-height: 44px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .title p {
+            color: #003f83;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 30px;
+        }
+
+        .city {
+            font-size: 23px;
+            color: #333333;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* LOGO */
+        .logo-container {
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            bottom: -63px;
+            transform: translateX(-50%);
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: #0b66c3;
+            border: 7px solid rgba(255,255,255,.3);
+            box-shadow: 0 5px 14px rgba(0,0,0,.20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            color: white;
+            text-align: center;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .logo .gaston {
+            font-size: 48px;
+            letter-spacing: 1px;
+            line-height: 45px;
+        }
+
+        .logo .calzados {
+            display: inline-block;
+            margin-top: 2px;
+            background: white;
+            color: #164b81;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 2px 9px;
+            border-radius: 2px;
+        }
+
+        /* CONTENIDO */
+        .content {
+            position: relative;
+            z-index: 20;
+            padding: 90px 28px 30px;
+            background: white;
+        }
+
+        .instruction {
+            text-align: center;
+            color: #222;
+            font-size: 20px;
+            line-height: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* TARJETAS */
+        .branch {
+            width: 100%;
+            min-height: 118px;
+            margin-bottom: 16px;
+            padding: 17px 18px;
+            border-radius: 22px;
+            background: #ffffff;
+            border: 2px solid #d9e6ef;
+            box-shadow:
+                0 3px 0 #f0d44f,
+                0 4px 10px rgba(0,0,0,.12);
+
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+
+        .branch:active {
+            transform: scale(.98);
+            box-shadow:
+                0 2px 0 #f0d44f,
+                0 3px 7px rgba(0,0,0,.12);
+        }
+
+        /* ÍCONO UBICACIÓN */
+        .location-icon {
+            flex: 0 0 58px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #0b4f8e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 17px;
+        }
+
+        .pin {
+            position: relative;
+            width: 23px;
+            height: 30px;
+            background: white;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+        }
+
+        .pin::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #0b4f8e;
+            border-radius: 50%;
+            top: 7px;
+            left: 7px;
+        }
+
+        /* TEXTO DE SUCURSAL */
+        .branch-info {
+            flex: 1;
+        }
+
+        .branch-name {
+            color: #163b5c;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .branch-address {
+            color: #253b4c;
+            font-size: 18px;
+            line-height: 23px;
+        }
+
+        .arrow {
+            font-size: 38px;
+            color: #124b72;
+            font-weight: 300;
+            margin-left: 8px;
+        }
+
+        /* PARTE INFERIOR */
+        .bottom {
+            position: absolute;
+            z-index: 30;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 145px;
+            background: #064c88;
+            overflow: hidden;
+        }
+
+        /* ONDA SUPERIOR */
+        .wave {
+            position: absolute;
+            top: -43px;
+            left: -5%;
+            width: 110%;
+            height: 85px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .wave2 {
+            position: absolute;
+            top: -22px;
+            left: -10%;
+            width: 120%;
+            height: 55px;
+            background: #064c88;
+            border-radius: 50%;
+        }
+
+        .thanks {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 19px;
+            text-align: center;
+            color: white;
+        }
+
+        .thanks-main {
+            font-family: "Brush Script MT", "Segoe Script", cursive;
+            font-size: 34px;
+            font-style: italic;
+            line-height: 35px;
+        }
+
+        .thanks-sub {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 430px) {
+
+            .header {
+                height: 340px;
+            }
+
+            .title h1 {
+                font-size: 36px;
+                line-height: 39px;
+            }
+
+            .title p {
+                font-size: 23px;
+            }
+
+            .city {
+                font-size: 20px;
+            }
+
+            .logo-container {
+                width: 170px;
+                height: 170px;
+                bottom: -58px;
+            }
+
+            .logo .gaston {
+                font-size: 43px;
+            }
+
+            .content {
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 82px;
+            }
+
+            .instruction {
+                font-size: 18px;
+                line-height: 23px;
+            }
+
+            .branch {
+                min-height: 112px;
+                padding: 14px;
+            }
+
+            .location-icon {
+                width: 52px;
+                height: 52px;
+                flex-basis: 52px;
+                margin-right: 13px;
+            }
+
+            .branch-name {
+                font-size: 18px;
+            }
+
+            .branch-address {
+                font-size: 16px;
+                line-height: 21px;
+            }
+
+            .arrow {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="phone-page">
+
+        <!-- CABECERA -->
+        <section class="header">
+
+            <div class="bubble b1"></div>
+            <div class="bubble b2"></div>
+            <div class="bubble b3"></div>
+            <div class="bubble b4"></div>
+
+            <div class="nfc">
+                <div class="nfc-icon">)))</div>
+                <div class="nfc-text">NFC</div>
+            </div>
+
+            <div class="title">
+                <h1>¡Visítanos!</h1>
+                <p>Nuestras sucursales</p>
+                <div class="city">San Miguel de Tucumán</div>
+            </div>
+
+            <!-- LOGO -->
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="gaston">gaston</div>
+                    <div class="calzados">CALZADOS</div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- CONTENIDO -->
+        <section class="content">
+
+            <div class="instruction">
+                Tocá una sucursal para abrir la ubicación en<br>
+                Google Maps
+            </div>
+
+
+            <!-- SUCURSAL 1 -->
+            <a
+                class="branch"
+                href="https://www.google.com/maps/search/?api=1&query=Mendoza+655,+San+Miguel+de+Tucumán"
+                target="_blank"
+            >
+
+                <div class="location-icon">
+                    <div class="pin"></div>
+                </div>
+
+                <div class="branch-info">
+                    <div class="branch-name">
+                        Sucursal 1
+                    </div>
+
+                    <div class="branch-address">
+                        Mendoza 655<br>
+                        San Miguel de Tucumán
+                    </div>
+                </div>
+
+                <div class="arrow">›</div>
+
+            </a>
+
+
+            <!-- SUCURSAL 2 -->
+            <a
+                class="branch"
+                href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+266,+San+Miguel+de+Tucumán"
+                target="_blank"
+            >
+
+                <div class="location-icon">
+                    <div class="pin"></div>
+                </div>
+
+                <div class="branch-info">
+                    <div class="branch-name">
+                        Sucursal 2
+                    </div>
+
+                    <div class="branch-address">
+                        24 de Septiembre 266<br>
+                        San Miguel de Tucumán
+                    </div>
+                </div>
+
+                <div class="arrow">›</div>
+
+            </a>
+
+
+            <!-- SUCURSAL 3 -->
+            <a
+                class="branch"
+                href="https://www.google.com/maps/search/?api=1&query=24+de+Septiembre+282,+San+Miguel+de+Tucumán"
+                target="_blank"
+            >
+
+                <div class="location-icon">
+                    <div class="pin"></div>
+                </div>
+
+                <div class="branch-info">
+                    <div class="branch-name">
+                        Sucursal 3
+                    </div>
+
+                    <div class="branch-address">
+                        24 de Septiembre 282<br>
+                        San Miguel de Tucumán
+                    </div>
+                </div>
+
+                <div class="arrow">›</div>
+
+            </a>
+
+        </section>
+
+
+        <!-- PIE AZUL -->
+        <footer class="bottom">
+
+            <div class="wave"></div>
+            <div class="wave2"></div>
+
+            <div class="thanks">
+                <div class="thanks-main">
+                    ¡Gracias!♡
+                </div>
+
+                <div class="thanks-sub">
+                    POR ELEGIRNOS
+                </div>
+            </div>
+
+        </footer>
+
+    </main>
+
+</body>
+</html>
